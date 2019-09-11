@@ -2,7 +2,7 @@
 
 >### 참고 URL
 - https://medium.com/@dan_abramov/react-components-elements-and-instances-90800811f8ca
-
+- https://blog.logrocket.com/a-complete-guide-to-default-props-in-react-984ea8e6972d/
 
 >### chapter 01. 리액트 시작
 - react는 라이브러리
@@ -61,3 +61,33 @@
 
 <br/>
 
+>### chapter 03. Component
+- component 생성 → 별도의 file 생성 후, 거기에서 관리
+- module import / export
+- props : component의 속성
+    - 부모 컴포넌트로부터 받은 props는 read-only
+    - (component).defaultProps를 통해 기본 props 값 설정 가능
+    - prop-types를 통해 각 prop의 타입 지정 가능
+    - prop-types의 isRequired를 통해 prop 필수여부 지정 가능
+    - prop-types 종류
+        - array : 배열
+        - bool : 참, 거짓
+        - func : 함수
+        - number : 숫자
+        - object : 객체
+        - string : 문자열
+        - symbol : ES6 문법의 symbol 개체
+        - node : 렌더링 가능한 모든 것(숫자, 문자열, element 또는 이들로 구성된 배열)
+        - element : 리액트 요소
+        - instanceOf(MyClass) : 특정 클래스의 인스턴스
+        - oneOf(['A', 'B']) : 주어진 배열 요소 중 값 하나
+        - oneOfType([React.PropTypes.string, React.PropTypes.number]) : 주어진 배열 안의 종류 중 하나
+        - arrayOf(React.PropTypes.number) : 주어진 종류료 구성된 배열
+        - objectOf(React.PropTypes.number) : 주어진 종류의 값을 가진 객체
+        - shape({name: React.PropTypes.string, age: React.PropTypes.number}) : 주어진 schema를 가진 객체
+        - any : 아무 종류
+- state : 컴포넌트 내부에서 CRUD가 가능한 상태값
+    - constructor 내부에 설정 (class형 component인 경우)
+        - constructor 바깥에서 정의할 수도 있음
+    - component에서 발생하는 event를 통해 별도의 함수를 선언하여 제어
+    - 항상 setState를 통해서 접근, 직접 접근은 X
