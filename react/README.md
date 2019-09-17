@@ -11,7 +11,7 @@
 - virtual DOM을 통해 DOM트리 구조에서 변경된 tree만 real DOM에 적용
 - Node.js, yarn, VS code, Git
     - VS code extensiont : ESLint, Reactjs code snippets
-- 프로젝트 생성
+- 프로젝트 생성 및 실행
     - create-react-app (프로젝트명)
     - cd (프로젝트명)
     - yarn start
@@ -91,3 +91,18 @@
         - constructor 바깥에서 정의할 수도 있음
     - component에서 발생하는 event를 통해 별도의 함수를 선언하여 제어
     - 항상 setState를 통해서 접근, 직접 접근은 X
+
+<br/>
+
+>### Chapter 04. 이벤트 핸들링
+- 리액트의 이벤트 시스템은 일반 웹 브라우저의 HTML 이벤트와 인터페이스가 동일
+- 이벤트 사용시 주의사항
+    - 이벤트 이름은 camelCase
+    - 이벤트 실행시, 함수 형태의 값을 전달
+    - DOM 요소에만 이벤트 설정 가능
+- 리액트에서 지원하는 이벤트 종류 확인은 아래 링크에서 확인
+    - [리액트 이벤트 매뉴얼](https://reactjs.org/docs/events.html)
+- **참고** : [SyntheticEvnet와 Event Pooling](https://ko.reactjs.org/docs/events.html)
+
+
+
