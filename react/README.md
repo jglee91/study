@@ -123,4 +123,63 @@
 - 리액트에서는 ref를 사용하여 DOM에 고유값을 부여
     - 만약 id를 쓰면, 렌더링 이후 생성되는 DOM tree에 중복되는 id가 발생할 가능성 존재
     - ref는 전역적으로 작동하지 않고, 컴포넌트 내부에서만 작동하기 때문에 문제 없음
+- state만으로 해결이 안되는 상황
+    - 특정 input에 focusing
+    - scroll box 조작
+    - canvas 요소 drawing
+    - 이 외 특정 case에 의해 DOM에 직접 접근해야 할 때, **ref** 사용
+- functional component는 instance가 없으므로 ref attribute 사용 불가
+    ```js
+    function MyFunctionComponent() {
+        return <input />;
+    }
 
+    class Parent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.textInput = React.createRef();
+        }
+        render() {
+            // 이 코드는 동작하지 않음
+            return (
+                <MyFunctionComponent ref={this.textInput} />
+            )
+        }
+    }
+    ```
+    - 만약 ref가 필요할 경우, class component로 변환시켜서 사용하여야 함(lifecycle method나 state가 필요한 경우도 마찬가지)
+    - 다만 DOM element나 class component의 instance에 접근하기 위해 ref attribute를 functional component에서 사용하는 것은 가능
+        ```js
+        function CustomTextInput(props) {
+            // textInput은 ref attribute를 통해 전달되기 위해서 이곳에 정의
+            let textInput = React.createRef();
+
+            function handleClick() {
+                textInput.current.focus();
+            }
+
+            return (
+                <div>
+                    <input type="text" ref={textInput} />
+                    <input type="button" value="Focus the text input" onClick={handleClick} />
+                </div>
+            )
+        }
+        ```
+- class component에 ref를 달아 유동적으로 사용 가능
+    ```js
+    <MyComponent ref={ref => {this.myCompoent=ref}}>
+    ```
+    - 위 방식으로 component 내부의 메서드 및 멤버 변수에도 접근 가능 → 내부의 ref에도 접근 가능
+    - myComponent.handleClick, myComponent.input 등
+- ref를 남발하여 사용하면 프로젝트 소스가 스파게티화 되므로 DOM에 직접 접근이 필요할 경우에만 사용할 것!
+- **참고** ES6 비구조화 할당 문법 : 주로 코드의 가독성과 편리함을 이유로 사용
+    ```js
+    const object = { foo: 1, bar: 2 };
+    function print({foo, bar}) {
+        console.log(foo, bar);
+    }
+    print(object); // 1 2
+    ```
+
+<br />
