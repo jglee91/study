@@ -104,5 +104,23 @@
     - [리액트 이벤트 매뉴얼](https://reactjs.org/docs/events.html)
 - **참고** : [SyntheticEvnet와 Event Pooling](https://ko.reactjs.org/docs/events.html)
 
+<br />
 
+>### Chapter 05. ref: DOM에 이름 달기
+- public/index.html에 id가 root인 div가 있으며, 여기에 react component를 렌더링 함
+    ```html
+    (...)
+        <body>
+            <div id="root"></div>
+        </body>
+    (...)
+    ```
+    ```js
+    (...)
+        ReactDOM.render(<App />, document.getElementById('root'));
+    (...)
+    ````
+- 리액트에서는 ref를 사용하여 DOM에 고유값을 부여
+    - 만약 id를 쓰면, 렌더링 이후 생성되는 DOM tree에 중복되는 id가 발생할 가능성 존재
+    - ref는 전역적으로 작동하지 않고, 컴포넌트 내부에서만 작동하기 때문에 문제 없음
 
