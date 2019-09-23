@@ -183,3 +183,29 @@
     ```
 
 <br />
+
+>### Chapter 06. 컴포넌트 반복
+- javacript 내장 함수인 map 함수를사용하여 렌더링 가능
+    ```js
+    arr.map(callback, [thisArg])
+    // callback : arr의 각 배열 인자를 반환하는 callback 함수
+    //  currentValue
+    //  index
+    //  array
+    // thisArg : callback 함수 내부에서 사용할 this reference
+    ```
+- react에서는 component 반복시, 생성되는 element에 key attribute가 없으면 경고메세지를 띄워줌
+    - react에서는 key값을 통해 변동되는 element를 감지하기 때문
+    - 중복되는 key를 가질 경우, application data rendering에 문제가 발생할 수 있음
+    - key 값에는 index를 쓰지 말 것 (anti-pattern, **[참고](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md)**)
+- react의 데이터 변화 자동감지 re-rendering을 위해 array.push()가 아닌 array.concat()을 사용
+    ```js
+    const arr = ['1', '2', '3'];
+    console.log(arr.push('4'));     // 4
+    console.log(arr.concat('4'));   // ['1', '2', '3', '4']
+    ```
+- **참고** ES6 전개 연산자
+    ```js
+    const numbers = [1,2,3,4,5,6];
+    const morNumbers = [ ...numbers, 6 ]; // [1,2,3,4,5,6]
+    ```
