@@ -212,7 +212,7 @@
 
 <br />
 
->### Chapter07. 컴포넌트의 라이프사이클 메서드
+>### Chapter 07. 컴포넌트의 라이프사이클 메서드
 - 모든 react component에는 lifecycle이 존재
 - lifecycle 카테고리에는 크게 mount, update, unmount가 있음
     - mount : DOM 생성 후 웹 브라우저상에 나타나는 시기
@@ -222,5 +222,12 @@
     - unmount : component를 DOM에서 제거하는 시기
         - componentWillUnmount
 - component update 성능 개선시, *shouldComponentUpdate*가 중요하게 사용됨
+
+<br />
+
+>### Chapter 08. 함수형 컴포넌트
+- react component가 lifecycle API, state를 사용하지 않고 parent로부터 props를 받아 처리하는 역할만 할 때, functional component 사용
+- react project에서는 state를 사용하는 component 개수를 최소화하면 성능상 향상됨
+    - 대부분 functional component를 사용하고, state나 LifeCycle API를 써야 할 때만 class component 사용
 
 <br />

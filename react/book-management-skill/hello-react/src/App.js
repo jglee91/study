@@ -6,6 +6,7 @@ import ValidationSample from './chapter05/ValicationSample';
 import ScrollBox from './chapter05/ScrollBox';
 import IterationSample from './chapter06/IterationSample';
 import LifeCycleSample from './chapter07/LifeCycleSample';
+import FunctionalComponentSample from './chapter08/FunctionalComponentSample';
 
 function getRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -37,10 +38,12 @@ export default class App extends Component {
         /* chapter 06 */
         // <IterationSample />
         /* chapter 07 */
-        <div>
-          <button onClick={this.handleClick}>랜덤 색상</button>
-          <LifeCycleSample color={this.state.color} />
-        </div>
+        // <div>
+        //   <button onClick={this.handleClick}>랜덤 색상</button>
+        //   <LifeCycleSample color={this.state.color} />
+        // </div>
+        /* chapter 08 */
+        <FunctionalComponentSample name={'react'} />
     );
   }
 }
