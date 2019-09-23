@@ -209,3 +209,18 @@
     const numbers = [1,2,3,4,5,6];
     const morNumbers = [ ...numbers, 6 ]; // [1,2,3,4,5,6]
     ```
+
+<br />
+
+>### Chapter07. 컴포넌트의 라이프사이클 메서드
+- 모든 react component에는 lifecycle이 존재
+- lifecycle 카테고리에는 크게 mount, update, unmount가 있음
+    - mount : DOM 생성 후 웹 브라우저상에 나타나는 시기
+        - constructor, getDerivedStateFromProps, render, componentDidMount
+    - update : props 변경시, state 변경시, parent component re-rendering시, forceUpdate를 통한 강제 rendering trigger시
+        - getDerivedStateFromProps, shouldComponentUpdate, render, getSnapshotBeforeUpdate, componentDidUpdate
+    - unmount : component를 DOM에서 제거하는 시기
+        - componentWillUnmount
+- component update 성능 개선시, *shouldComponentUpdate*가 중요하게 사용됨
+
+<br />
