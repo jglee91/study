@@ -231,3 +231,21 @@
     - 대부분 functional component를 사용하고, state나 LifeCycle API를 써야 할 때만 class component 사용
 
 <br />
+
+>### Chapter 09. 컴포넌트 스타일링
+- webpack의 css-loader를 이용하여 css를 불러오는 방식
+    - 클래스네임 중복 방지를 위해 각 클래스네임에 컴포넌트명을 prefix로 붙임
+- CSS 사용 편의성을 위해 Sass, LESS, Stylus 등 CSS 전처리기를 사용하기도 함
+- CSS Module
+    - CSS를 모듈화하여 사용
+    - CSS 클래스를 통해 스코프를 지역적으로 제한
+    ``` js
+    // webpack load시
+    {
+        box: 'abc'
+    }
+    // 클래스 적용시
+    className = {styles.box}
+    ```
+- Sass
+- styled-components
