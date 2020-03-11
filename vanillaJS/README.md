@@ -11,3 +11,9 @@
 
 ### 4. Rating App
 - https://www.youtube.com/watch?v=MQ_OKpRVoyg
+
+### 5. Weather App
+- https://www.youtube.com/watch?v=wPElVpR1rwA
+
+### 6. Responsive Nav Bar
+- https://www.youtube.com/watch?v=gXkqy0b4M5g
