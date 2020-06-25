@@ -1,0 +1,23 @@
+import Link from 'next/link';
+
+export default function List({ ownersList }) {
+  return (
+    <div>
+      {ownersList.map((e, index) => (
+        <div key={index}>
+          <Link as={`/${e.vehicle}/${e.ownerName}`} href="/[vehicle]/[person]">
+            <a>
+              Navigate to {e.ownerName}'s {e.vehicle}
+            </a>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+List.getInitialProps = async () => {
+  const response = await fetch('http://localhost:3000/api/vehicle');
+  const ownersList = await response.json();
+  return { ownersList };
+};
