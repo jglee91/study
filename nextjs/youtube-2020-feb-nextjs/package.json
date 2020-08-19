@@ -9,8 +9,14 @@
     "mock-server": "json-server --watch ./db.json -p 4001 -d 3000"
   },
   "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "typescript": "^3.9.7"
   }
 }

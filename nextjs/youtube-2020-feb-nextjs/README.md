@@ -1,30 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Study with Youtube Tutorial
 
-## Getting Started
+## Part1. Router for Beginners
 
-First, run the development server:
+<hr/>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Part2. Data Fetching with getInitialProps
+- mock server
+    - use json-server to use simple REST API Server
+        ``` json
+        {
+            ...
+            "scripts": {
+                ...
+                "mock-server": "json-server --watch ./db.json -p 4001 -d 3000"
+            },
+            ...
+        }
+        ```
+        ``` cmd
+        $ npm install -g json-server
+        $ npm run mock-server
+        ```
+- fetching data with React.useEffect, the server response empty page
+    - use **getInitialProps!**
+        ``` js
+        export default function List({ ownersList }) {
+            return (
+                <div>
+                {ownersList.map((owner, index) => (
+                    <div key={index}>
+                    <Link as={`/${owner.vehicle}/${owner.ownerName}`} href="/[vehicle]/[person]">
+                        <a>
+                        Navigate to {owner.ownerName}'s {owner.vehicle}
+                        </a>
+                    </Link>
+                    </div>
+                ))}
+                </div>
+            );
+        }
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+        List.getInitialProps = async () => {
+            const response = await fetch('http://localhost:4001/vehicles');
+            const ownersList = await response.json();
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+            return { ownersList };
+        };
+        ```
+    - getInitialProps can receive **context** parameter
+<hr/>
 
-## Learn More
+## Part3. TypeScript Migration
+1. Select one Entry Point
+2. Get childs (recursively)
 
-To learn more about Next.js, take a look at the following resources:
+- change file ext and restart nextjs, will see the error
+    ``` cmd
+    It looks like you're trying to use TypeScript but do not have the required package(s) installed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    Please install typescript, @types/react, and @types/node by running:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+            yarn add --dev typescript @types/react @types/node
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    If you are not trying to use TypeScript, please remove the tsconfig.json file from your package root (and any TypeScript files).
+    ```
+- install dependencies 
+    ``` cmd
+    $ npm install --save-dev typescript @types/react @types/node
+    ```
+- after install dependencies and restart, **tsconfig.json** will create root path
+- modify **strict** value
+    ``` json
+    {
+        "compilerOptions": {
+            ...
+            "strict": true,
+            ...
+        },
+        ...
+    }
+    ```
