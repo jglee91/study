@@ -48,6 +48,7 @@
         };
         ```
     - getInitialProps can receive **context** parameter
+
 <hr/>
 
 ## Part3. TypeScript Migration
@@ -80,3 +81,11 @@
         ...
     }
     ```
+
+<hr/>
+
+## Part4. API Routes using SQL Database
+1. Create all the Routes
+2. Create a database using SQLite
+    - in tutorial, use simple DBMS (no 'external' S/W)
+3. Connect 2 first steps
