@@ -93,3 +93,30 @@
 <hr/>
 
 ## Part5. Material-ui Integration + _app and _document
+
+<hr/>
+
+## Part6. Authentication for API Routes using JWT and bcrypt
+- Authentication is the process of verifying an identity
+- Authorization is the process of verifying what someone is allowed to do
+- Auth Flow
+    - client: user login with username and password
+    - server: issue JWT
+- JWT
+    - Header: base64 encoded json with "alg" and "type"
+    - Payload / Claims: base64 encoded json with iss, sub, aud, exp, ...
+    - Signature: HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), your-256-bit-secret)
+- Persist Authenticated
+    - Cookies
+        - Pros
+            - mitigated XSS attacks if using "httpOnly" (cookies are not accessible via js)
+            - cookies are sent "automatically" in every request
+        - Cons
+            - CSRF is a problem (automatically sent)
+    - WebStorage (LocalStorage or SessionStorage)
+        - Pros
+            - Protected against CSRF attacks
+        - Cons 
+            - need to add the token to every request
+            - vulnerable to XSS
+            - shouldn't store "sensitive" data in WebStorage
