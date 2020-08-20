@@ -1,11 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { open } from 'sqlite';
+import sqlite3 from 'sqlite3';
 
-export default function getAllVehicles(req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case 'GET':
-      res.json({ hello: 'world', method: req.method });
-      break;
-    default:
-      res.status(500).json({ message: 'sorry we only accept GET requests' });
-  }
+export default async function getAllVehicles(req: NextApiRequest, res: NextApiResponse) {
+  const db = await open({
+    filename: './mydb.sqlite',
+    driver: sqlite3.Database,
+  });
+  const vehicle = await db.all('SELECT * FROM vehicle');
+
+  res.json(vehicle);
 }
