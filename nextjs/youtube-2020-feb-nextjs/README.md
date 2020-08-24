@@ -148,3 +148,13 @@
 - getStaticPaths: only allow specific path
     - fallback
     - paths
+
+<hr/>
+
+## Part9. Data Fetching with getServerSideProps
+- runs only on your server
+    - the code does not run on the browser
+- on client side navigation the borwser calls getServerSideProps as an "API" endpoint/proxy
+    - Next.js does that automatically for you
+- We can use database directly
+    - SELECT * FROM table
