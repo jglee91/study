@@ -120,3 +120,17 @@
             - need to add the token to every request
             - vulnerable to XSS
             - shouldn't store "sensitive" data in WebStorage
+
+<hr/>
+
+## Part7. Comsume Authenticated APIs with cookies
+- Change /api/login to use cookies
+- Change "authentication middleware" to check cookies
+- Create a login and signup page
+- Create 2 pages to consume protected APIS
+    - SSR
+    - Client-Side
+    ``` cmd
+    $ npm install --save cookie
+    $ npm install --save-dev @types/cookie
+    ```
