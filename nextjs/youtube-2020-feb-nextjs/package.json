@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node ./database-test.js && next dev",
+    "dev": "node ./test-migration.js && next dev",
     "build": "next build",
     "start": "next start",
     "mock-server": "json-server --watch ./db.json -p 4001 -d 3000"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "bcrypt": "^5.0.0",
     "cookie": "^0.4.1",
     "isomorphic-unfetch": "^3.0.0",

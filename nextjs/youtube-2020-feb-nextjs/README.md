@@ -134,3 +134,17 @@
     $ npm install --save cookie
     $ npm install --save-dev @types/cookie
     ```
+
+<hr/>
+
+## Part8. Static Site Generation (SSG) | getStaticProps and getStaticPaths
+- getStaticProps: only run at build time
+- getStaticProps will use when...
+    - the data required to render the page is available at build time ahead of a user's req
+    - the data comes fro mheadless CMS
+    - the data can be publicly cached (not user-specific)
+    - the page must be pre-rendered (for SEO) and be very fast
+        - getStaticProps generates HTML and JSON files, both of which can be cached by a CDN for performance
+- getStaticPaths: only allow specific path
+    - fallback
+    - paths
