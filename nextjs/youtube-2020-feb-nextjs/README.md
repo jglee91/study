@@ -158,3 +158,20 @@
     - Next.js does that automatically for you
 - We can use database directly
     - SELECT * FROM table
+
+<hr/>
+
+## Part10. Environment Variables and Runtime Configuration
+``` cmd
+$ npx create-next-app youtube-2020-april-nextjs-part10
+$ npm install --save-dev cross-env dotenv
+
+...
+
+$ npm run build && npm start
+```
+- In next.config.js ...
+    - serverRuntimeConfig
+    - publicRuntimeConfig
+    - others
+    - ~RuntimeConfig just set runtime
