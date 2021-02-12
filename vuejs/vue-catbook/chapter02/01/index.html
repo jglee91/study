@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue.js App</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Mustache. 텍스트 콘텐츠에만 사용 가능 -->
+      <p>{{ JSON.stringify(state) }}</p>
+      <p>Hello {{ message }}</p>
+      <p>{{ list[num] }}</p>
+      <p>{{ 1 + 1 }}</p>
+
+      <!-- <p>{{ var foo = message; }}</p> 표현식은 사용 불가능 -->
+
+      <!-- 긴 표현식은 산출 속성을 사용하는 것이 좋음 -->
+      <p>{{ message.length >= 10 ? '10글자 이상' : '10글자 미만' }}</p>
+
+      <!-- 문자열 또는 숫자를 변환할 때는 필터를 사용하는 것이 좋음 -->
+      <p>{{ Math.round(3.14) }}</p>
+
+      <!-- <input type="text" value="{{ message }}" /> mustache를 속성으로 전개 불가능 -->
+      <input type="text" v-bind:value="message" />
+      <!-- <input type="text" :value="message" /> -->
+
+      <!-- v-bind 장식자 -->
+      <!-- .prop  속성 대신에 DOM 속성으로 바인딩 -->
+      <div v-bind:text-content.prop="message">...</div>
+      <div v-bind:scroll-top.prop="scroll">...</div>
+      <!-- .camel kebab-case 속성 이름을 camelCase 로 변환 -->
+      <!-- .sync  양방 바인딩 -->
+
+      <pre>{{ $data }}</pre>
+
+      <div>
+        <p>{{ count }}번 클릭했습니다.</p>
+        <button v-on:click="increment">카운트 하기</button>
+      </div>
+
+      <p v-bind:class="{ child: isChild, 'is-active': isActive }">Text</p>
+      <p v-bind:style="{ color: textColor, backgroundColor: bgColor }">Text</p>
+
+      <!-- 플레인 속성과 함께 사용하면 바인딩한 것이 덮어쓰게 됨 -->
+      <p class="child" v-bind:class="{ 'is-active': isActive }">Text1</p>
+      <p style="color: #0000ff" v-bind:style="{ color: textColor }">Text1</p>
+
+      <!-- 클래스 조건에 삼항 연산자는 배열 리터럴 사용 -->
+      <p v-bind:class="[isActive ? 'active': 'normal', 'otherClass']">Text2</p>
+
+      <!-- 객체 데이터로 전달하는 것도 가능 -->
+      <p v-bind:class="classObject">Text3</p>
+      <p v-bind:style="styleObject">Text3</p>
+
+      <!-- v-bind 디렉티브의 매개변수 부분을 생략하면 한번에 바인딩 가능 -->
+      <img v-bind="item" v-bind:id="'thumb-' + item.id" />
+      <!-- <img v-bind="item" v-bind:id="`thumb-${item.id}`" /> -->
+
+      <!-- svg 데이터 바인딩 -->
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <circle cx="100" cy="75" v-bind:r="radius" fill="lightpink" />
+        </svg>
+        <input type="range" min="0" max="100" v-model="radius" />
+      </div>
+
+      <!-- 주석으로 출력됨 -->
+      <div v-if="ok">v-if 조건으로 출력하기</div>
+      <!-- none 처리됨 -->
+      <div v-show="ok">v-show 조건으로 출력하기</div>
+
+      <!-- template 태그를 사용한 v-if 그룹 (v-show는 안먹히네?!) -->
+      <template v-if="ok">
+        <header>타이틀</header>
+        <div>콘텐츠</div>
+      </template>
+
+      <div v-if="type === 'A'">type은 A</div>
+      <div v-else-if="type === 'B'">type은 B</div>
+      <div v-else>모든 조건을 만족하지 않는 경우</div>
+      <!-- 두 개의 div가 다른 요소라는 것을 명시적으로 지정 -->
+      <div v-if="loaded" key="content-visible">content</div>
+      <div v-else key="content-loading">loading now...</div>
+
+      이름 <input v-model="name" />
+      <button v-on:click="doAdd">몬스터 추가하기</button>
+      <!-- 요소 반복 렌더링 -->
+      <ol>
+        <!-- 요소의 식별과 효율적인 렌더링 처리를 위해서 요소에 유니크한 key 속성을 설정하는 것이 권장됨 -->
+        <li
+          v-for="(monster, index) in monsters"
+          v-bind:key="monster.id"
+          v-bind:class="{ strong: monster.hp > 300 }"
+          v-if="monster.hp < 600"
+        >
+          ID.{{ monster.id }} {{ monster.name }} HP.{{ monster.hp }}
+          <span v-if="monster.hp < 50"> 큰 피해...!</span>
+          <span v-if="monster.hp > 300"> 강하다!</span>
+          <button v-on:click="doAttack(index)">공격하기</button>
+          <button v-on:click="doRemove(index)">몬스터 제거하기</button>
+        </li>
+      </ol>
+      <ul>
+        <li v-for="(item, key, index) in item">
+          {{ index }} - {{ key }} : {{ item }}
+        </li>
+      </ul>
+
+      <!-- 리터럴에 직접 v-for 적용 -->
+      <span v-for="item in 15">{{ item }} </span>
+      <span v-for="item in 'text'">{{ item }} </span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
