@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({
   },
 });
 
-userSchema.pre('save', (done) => {
+userSchema.pre('save', function (done) {
   const user = this;
   const saltRounds = 10;
 
@@ -43,6 +43,7 @@ userSchema.pre('save', (done) => {
       bcrypt.hash(user.password, salt, (err, hash) => {
         if (err) return done(err);
         user.password = hash;
+        done();
       });
     });
   } else {
@@ -50,16 +51,16 @@ userSchema.pre('save', (done) => {
   }
 });
 
-userSchema.methods.comparePassword = (plain, done) => {
+userSchema.methods.comparePassword = function (plain, done) {
   const user = this;
 
-  bcrypt.compare(plain, user, (err, isMatch) => {
+  bcrypt.compare(plain, user.password, (err, isMatch) => {
     if (err) return done(err);
     done(null, isMatch);
   });
 };
 
-userSchema.methods.generateToken = (done) => {
+userSchema.methods.generateToken = function (done) {
   const user = this;
   const token = jwt.sign(user._id.toHexString(), 'secret');
 
@@ -67,6 +68,17 @@ userSchema.methods.generateToken = (done) => {
   user.save((err, user) => {
     if (err) return done(err);
     done(null, user);
+  });
+};
+
+userSchema.statics.findByToken = function (token, done) {
+  const user = this;
+
+  jwt.verify(token, 'secret', function (err, decode) {
+    user.findOne({ _id: decode, token }, function (err, user) {
+      if (err) return done(err);
+      done(null, user);
+    });
   });
 };
 
