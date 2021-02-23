@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-  res.json({ 'hello ~': 'Hi ~~ asdfasdfasdfd12341234f' });
+  res.json({ hello: 'I am happy to deploy this application!' });
 });
 
 app.get('/api/user/auth', auth, (req, res) => {
@@ -77,5 +77,5 @@ app.get('/api/user/logout', auth, (req, res) => {
 });
 
 const port = process.env.PORT || 5000;
-console.log(port);
+
 app.listen(port, () => console.log(`Server Running at ${port}`));
