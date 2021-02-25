@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../actions/user_actions';
 
 const RegisterLogin = (props) => {
@@ -9,10 +10,8 @@ const RegisterLogin = (props) => {
   });
   const [errors, setErrors] = useState([]);
 
-  const displayErrors = (errors) => {
-    console.log(errors);
+  const displayErrors = (errors) =>
     errors.map((error, i) => <p key={i}>{error}</p>);
-  };
   const handleChange = (event) => {
     setInput({ ...input, [event.target.name]: event.target.value });
   };
@@ -44,7 +43,7 @@ const RegisterLogin = (props) => {
     <div className="container">
       <h2>Login</h2>
       <div className="row">
-        <form className="col s12" onSubmit={submitForm}>
+        <form className="col s12">
           <div className="row">
             <div className="input-field col s12">
               <input
@@ -88,9 +87,20 @@ const RegisterLogin = (props) => {
                 className="btn waves-effect red lighten-2"
                 type="submit"
                 name="action"
+                onClick={submitForm}
               >
                 Login
-              </button>
+              </button>{' '}
+              &nbsp; &nbsp;
+              <Link to="/register">
+                <button
+                  className="btn waves-effect red lighten-2"
+                  type="submit"
+                  name="action"
+                >
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         </form>
