@@ -10,7 +10,7 @@ console.log(bizMOBHelper);
 
 const bizMOB = {
   Device: {
-    getInfo: _key => {},
+    getInfo: key => console.log(vm),
     isIOS: () => {},
     isAndroid: () => {},
     isPhone: () => {},
