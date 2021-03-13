@@ -1,5 +1,9 @@
 ## Clone Coding - Sleact
 
+- Youtube URL
+
+  - https://www.youtube.com/watch?v=Q2DlJKLNH1w&t=402s&ab_channel=ZeroChoTV
+
 - 주요 기술
 
   - frontend : react, swr (redux 없이 상태관리)

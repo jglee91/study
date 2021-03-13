@@ -30,7 +30,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Vue Project 세팅과정
 
-- npm i @vue/cli -g
+- npm install -g @vue/cli
 - vue add vuetify
 - npm i vuex
 - npm i eslint-config-prettier eslint-plugin-prettier --save-dev

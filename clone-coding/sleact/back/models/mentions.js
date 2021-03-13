@@ -1,7 +1,7 @@
 const DataTypes = require('sequelize');
 const { Model } = DataTypes;
 
-module.exports = class ChannelChat extends Model {
+module.exports = class Mention extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -12,16 +12,17 @@ module.exports = class ChannelChat extends Model {
         },
       },
       {
-        modelName: 'ChannelChat',
-        tableName: 'channelChats',
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_general_ci', // 이모티콘 저장
+        modelName: 'Mention',
+        tableName: 'mentions',
+        charset: 'utf8',
+        collate: 'utf8_general_ci', // 한글 저장
         sequelize,
       }
     );
   }
   static associate(db) {
-    db.ChannelChat.belongsTo(db.User);
-    db.ChannelChat.belongsTo(db.Channel);
+    db.Mention.belongsTo(db.Workspace);
+    db.Mention.belongsTo(db.Sender, { as: 'SenderId' });
+    db.Mention.belongsTo(db.Receiver, { as: 'ReceiverId' });
   }
 };
