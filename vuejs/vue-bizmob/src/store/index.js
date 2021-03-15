@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import bizMOB from './bizMOB';
+import common from './common';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    bizMOB
+    common
   }
 });

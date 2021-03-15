@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/error',
     name: 'error',
-    component: () => import('@/view/error/ErrorView'),
+    component: () => import('@/views/error/ErrorView'),
     meta: {}
   },
   {
