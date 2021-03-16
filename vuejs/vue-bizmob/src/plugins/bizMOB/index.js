@@ -1,16 +1,18 @@
-import bizStore from './store';
+import { isApp } from './util';
+import bizStore from './store/index';
 import IF from './interface/index';
 
 const bizMOB = new Object();
 
 bizMOB.install = (Vue, options) => {
   const { store } = options;
+  const { App, Web } = bizStore;
 
   if (!store) {
     throw new Error('bizMOB Plugin 사용을 위해서는 Vuex store가 필요합니다.');
   }
 
-  store.registerModule('bizMOB', bizStore);
+  store.registerModule('bizMOB', isApp ? App : Web);
 
   const vm = new Vue({ store });
 
@@ -76,7 +78,143 @@ bizMOB.install = (Vue, options) => {
               callback: res => (callback ? callback(res) : resolve(res))
             })
             .catch(e => reject(e));
+        }),
+      openImageViewer: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.SHOW_IMAGE_VIEW, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      openCodeReader: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.QR_AND_BAR_CODE, {
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
         })
+    },
+
+    Properties: {},
+
+    System: {
+      callTEL: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.TEL, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      callSMS: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.SMS, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      callBrowser: (params = {}) =>
+        new Promise((_, reject) =>
+          vm.$store.dispatch(IF.SHOW_WEBSITE, params).catch(e => reject(e))
+        ),
+      callGallery: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.GET_MEDIA_PICK, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      callMap: (params = {}) =>
+        new Promise((_, reject) =>
+          vm.$store.dispatch(IF.SHOW_MAP, params).catch(e => reject(e))
+        ),
+      getGPS: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.GET_LOCATION, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      callCamera: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.CAMERA_CAPTURE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        })
+    },
+
+    App: {
+      openProgress: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.PROGRESS_CONTROLLER, {
+              type: 'show',
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      closeProgress: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.PROGRESS_CONTROLLER, {
+              type: 'close',
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      exit: (params = {}) =>
+        new Promise((resolve, reject) =>
+          vm.$store.dispatch(IF.APPLICATION_EXIT, params).catch(e => reject(e))
+        ),
+      requestTimeout: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.SET_SESSION_TIMEOUT, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      getAvailableInterfaceList: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.GET_REGISTERED_CALL_IDS, {
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        })
+    },
+
+    Storage: {},
+
+    Network: {
+      // will be deprecated
+      requestTr: () => {},
+      requestLogin: () => {}
     },
 
     Device: {
@@ -86,7 +224,127 @@ bizMOB.install = (Vue, options) => {
       isAndroid: () => vm.$store.getters[IF.IS_ANDROID],
       isPhone: () => vm.$store.getters[IF.IS_PHONE],
       isTablet: () => vm.$store.getters[IF.IS_TABLET]
-    }
+    },
+
+    Contacts: {
+      get: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.GET_CONTACT, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        })
+    },
+
+    File: {
+      open: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.OPEN_FILE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      zip: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.ZIP_FILE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      unzip: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.UNZIP_FILE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      move: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.MOVE_FILE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      copy: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.COPY_FILE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      remove: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.REMOVE_FILES, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      directory: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.GET_DIRECTORY_INFO, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      exist: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.EXISTS_FILE, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      upload: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.FILE_UPLOAD, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        }),
+      download: (params = {}) =>
+        new Promise((resolve, reject) => {
+          const { callback } = params;
+          vm.$store
+            .dispatch(IF.DOWNLOAD, {
+              ...params,
+              callback: res => (callback ? callback(res) : resolve(res))
+            })
+            .catch(e => reject(e));
+        })
+    },
+
+    Push: {},
+
+    Database: {}
   };
 };
 

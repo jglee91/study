@@ -10,12 +10,12 @@ const routes = [
     name: 'error',
     component: () => import('@/views/error/ErrorView'),
     meta: {}
-  },
-  {
-    path: '/*',
-    name: 'Not Found',
-    redirect: '/error'
   }
+  // {
+  //   path: '/*',
+  //   name: 'Not Found',
+  //   redirect: '/error'
+  // }
 ];
 
 const router = new VueRouter({

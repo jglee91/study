@@ -1,3 +1,6 @@
+export const isApp =
+  !!window.BMCManager || !!window.webkit?.messageHandlers?.BMCManager;
+
 export const pathParser = path => {
   let splitPathType = {};
   const result = new RegExp('{(.*?)}/(.*)', 'g').exec(path);

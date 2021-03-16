@@ -12,11 +12,11 @@ export default {
   /**
    * Interfaces - Window
    */
-  SHOW_MESSAGE: `${namespace}/SHOW_MESSAGE`,
-  GOTO_SIGNATURE: `${namespace}/GOTO_SIGNATURE`,
-  OPEN_FILE_BROWSER: `${namespace}/OPEN_FILE_BROWSER`,
-  SHOW_IMAGE_VIEW: `${namespace}/SHOW_IMAGE_VIEW`,
-  QR_AND_BAR_CODE: `${namespace}/QR_AND_BAR_CODE`,
+  // SHOW_MESSAGE: `${namespace}/SHOW_MESSAGE`,
+  // GOTO_SIGNATURE: `${namespace}/GOTO_SIGNATURE`,
+  // OPEN_FILE_BROWSER: `${namespace}/OPEN_FILE_BROWSER`,
+  // SHOW_IMAGE_VIEW: `${namespace}/SHOW_IMAGE_VIEW`,
+  // QR_AND_BAR_CODE: `${namespace}/QR_AND_BAR_CODE`,
   // SideView...
 
   /**
@@ -29,21 +29,21 @@ export default {
   /**
    * Interfaces - System
    */
-  TEL: `${namespace}/TEL`,
-  SMS: `${namespace}/SMS`,
-  SHOW_WEBSITE: `${namespace}/SHOW_WEBSITE`,
-  GET_MEDIA_PICK: `${namespace}/GET_MEDIA_PICK`,
-  SHOW_MAP: `${namespace}/SHOW_MAP`,
-  GET_LOCATION: `${namespace}/GET_LOCATION`,
-  CAMERA_CAPTURE: `${namespace}/CAMERA_CAPTURE`,
+  // TEL: `${namespace}/TEL`,
+  // SMS: `${namespace}/SMS`,
+  // SHOW_WEBSITE: `${namespace}/SHOW_WEBSITE`,
+  // GET_MEDIA_PICK: `${namespace}/GET_MEDIA_PICK`,
+  // SHOW_MAP: `${namespace}/SHOW_MAP`,
+  // GET_LOCATION: `${namespace}/GET_LOCATION`,
+  // CAMERA_CAPTURE: `${namespace}/CAMERA_CAPTURE`,
 
   /**
    * Interfaces - App
    */
-  PROGRESS_CONTROLLER: `${namespace}/PROGRESS_CONTROLLER`, // show, close
-  APPLICATION_EXIT: `${namespace}/APPLICATION_EXIT`,
-  SET_SESSION_TIMEOUT: `${namespace}/SET_SESSION_TIMEOUT`,
-  GET_REGISTERED_CALL_IDS: `${namespace}/GET_REGISTERED_CALL_IDS`,
+  // PROGRESS_CONTROLLER: `${namespace}/PROGRESS_CONTROLLER`, // show, close
+  // APPLICATION_EXIT: `${namespace}/APPLICATION_EXIT`,
+  // SET_SESSION_TIMEOUT: `${namespace}/SET_SESSION_TIMEOUT`,
+  // GET_REGISTERED_CALL_IDS: `${namespace}/GET_REGISTERED_CALL_IDS`,
 
   /**
    * Interfaces - Storage
@@ -80,16 +80,16 @@ export default {
   /**
    * Interfaces - File
    */
-  OPEN_FILE: `${namespace}/OPEN_FILE`,
-  ZIP_FILE: `${namespace}/ZIP_FILE`,
-  UNZIP_FILE: `${namespace}/UNZIP_FILE`,
-  MOVE_FILE: `${namespace}/MOVE_FILE`,
-  COPY_FILE: `${namespace}/COPY_FILE`,
-  REMOVE_FILES: `${namespace}/REMOVE_FILES`,
-  GET_DIRECTORY_INFO: `${namespace}/GET_DIRECTORY_INFO`,
-  EXISTS_FILE: `${namespace}/EXISTS_FILE`,
-  FILE_UPLOAD: `${namespace}/FILE_UPLOAD`,
-  DOWNLOAD: `${namespace}/DOWNLOAD`,
+  // OPEN_FILE: `${namespace}/OPEN_FILE`,
+  // ZIP_FILE: `${namespace}/ZIP_FILE`,
+  // UNZIP_FILE: `${namespace}/UNZIP_FILE`,
+  // MOVE_FILE: `${namespace}/MOVE_FILE`,
+  // COPY_FILE: `${namespace}/COPY_FILE`,
+  // REMOVE_FILES: `${namespace}/REMOVE_FILES`,
+  // GET_DIRECTORY_INFO: `${namespace}/GET_DIRECTORY_INFO`,
+  // EXISTS_FILE: `${namespace}/EXISTS_FILE`,
+  // FILE_UPLOAD: `${namespace}/FILE_UPLOAD`,
+  // DOWNLOAD: `${namespace}/DOWNLOAD`,
   GET_IMAGE_INFO: `${namespace}/GET_IMAGE_INFO`,
   RESIZE_IMAGE: `${namespace}/RESIZE_IMAGE`,
   ROTATE_IMAGE: `${namespace}/ROTATE_IMAGE`,

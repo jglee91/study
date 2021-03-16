@@ -1,58 +1,62 @@
 <template>
   <v-app>
-    <router-view :key="$route.fullPath" />
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <SampleCard />
-    </v-main>
+    <v-container>
+      <v-btn @click="onClick('toast')">Toast</v-btn>
+      <br /><br />
+      <v-btn @click="onClick('signPad')">SignPad</v-btn>
+      <br /><br />
+      <v-btn @click="onClick('tel')">Tel</v-btn>
+      <br /><br />
+      <v-btn @click="onClick('sms')">SMS</v-btn>
+      <br /><br />
+      <v-btn @click="onClick('camera')">Camera</v-btn>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import SampleCard from './components/SampleCard';
-
 export default {
   name: 'App',
 
-  components: {
-    SampleCard
-  },
+  components: {},
 
-  data: () => ({
-    //
-  }),
-  methods: {}
+  computed: {},
+
+  methods: {
+    async onClick(method) {
+      let res;
+
+      switch (method) {
+        case 'toast':
+          this.$bizMOB.Window.toast({ message: 'toast message!!' });
+          break;
+
+        case 'signPad':
+          res = await this.$bizMOB.Window.openSignPad({
+            targetPath: '{external}/temp'
+          });
+          alert(JSON.stringify(res, null, 4));
+          break;
+
+        case 'tel':
+          res = await this.$bizMOB.System.callTEL({ number: '01029320080' });
+          alert(JSON.stringify(res, null, 4));
+          break;
+
+        case 'sms':
+          res = await this.$bizMOB.System.callSMS({
+            numbers: ['01029320080', '01012345678'],
+            message: 'test message'
+          });
+          alert(JSON.stringify(res, null, 4));
+          break;
+
+        case 'camera':
+          res = await this.$bizMOB.System.callCamera();
+          alert(JSON.stringify(res, null, 4));
+          break;
+      }
+    }
+  }
 };
 </script>
